@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Amigo do Idoso - Prático e Fácil</title>
+  <title>Portal de Apoio e Carinho à Terceira Idade</title>
   <style>
     :root {
-      --bg-body: #f0f4f8;
+      --bg-body: #f4f7f6;
       --card-bg: #ffffff;
-      --text-main: #1a1a1a;
-      --primary: #0f52ba;
-      --primary-hover: #0a3a85;
-      --danger: #d9381e;
-      --danger-hover: #a8230f;
-      --success: #198754;
-      --border-color: #0f52ba;
+      --text-main: #222222;
+      --primary: #0267c1;
+      --primary-hover: #014989;
+      --accent: #efa00b;
+      --danger: #d7263d;
+      --success: #1b9aaa;
+      --border-color: #0267c1;
       --font-scale: 1;
     }
 
@@ -24,8 +24,8 @@
       --text-main: #ffffff;
       --primary: #ffff00;
       --primary-hover: #ffd700;
+      --accent: #00ffff;
       --danger: #ff4d4d;
-      --danger-hover: #ff0000;
       --success: #00ff66;
       --border-color: #ffff00;
     }
@@ -37,7 +37,7 @@
       margin: 0;
       padding: 0;
       font-size: calc(20px * var(--font-scale));
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     /* BARRA FIXA DE ACESSIBILIDADE */
@@ -75,7 +75,7 @@
       background-color: var(--primary);
       color: white;
       text-align: center;
-      padding: 30px 15px;
+      padding: 40px 20px;
     }
 
     body.high-contrast header {
@@ -83,8 +83,17 @@
       border-bottom: 4px solid #fff;
     }
 
+    .banner-img {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 3px solid var(--border-color);
+    }
+
     main {
-      max-width: 800px;
+      max-width: 850px;
       margin: 20px auto;
       padding: 0 15px;
     }
@@ -93,19 +102,27 @@
       background-color: var(--card-bg);
       border: 4px solid var(--border-color);
       border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 30px;
+      padding: 25px;
+      margin-bottom: 35px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.1);
     }
 
     .card h2 {
       margin-top: 0;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       border-bottom: 3px solid var(--border-color);
       padding-bottom: 10px;
     }
 
-    /* BOTÕES GRANDES */
+    .card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    /* BOTÕES GRANDES E ACESSÍVEIS */
     .btn {
       background-color: var(--primary);
       color: #fff;
@@ -116,7 +133,7 @@
       border-radius: 12px;
       cursor: pointer;
       width: 100%;
-      margin: 8px 0;
+      margin: 10px 0;
       display: inline-block;
       text-align: center;
       box-sizing: border-box;
@@ -127,16 +144,11 @@
       color: #000;
     }
 
-    .btn-danger {
-      background-color: var(--danger);
-      font-size: 1.4rem;
-    }
+    .btn-danger { background-color: var(--danger); font-size: 1.3rem; }
+    .btn-success { background-color: var(--success); }
+    .btn-accent { background-color: var(--accent); color: #000; }
 
-    .btn-success {
-      background-color: var(--success);
-    }
-
-    /* CAMPOS DE ENTRADA */
+    /* FORMULÁRIOS */
     input, select {
       width: 100%;
       padding: 16px;
@@ -149,17 +161,13 @@
       color: var(--text-main);
     }
 
-    /* LISTAS */
-    ul {
-      list-style: none;
-      padding: 0;
-    }
+    ul { list-style: none; padding: 0; }
 
     li {
       background: rgba(0,0,0,0.05);
       border: 2px solid var(--border-color);
       padding: 15px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       border-radius: 10px;
       display: flex;
       justify-content: space-between;
@@ -167,23 +175,11 @@
       gap: 10px;
     }
 
-    body.high-contrast li {
-      background: #222;
-    }
-
-    .contact-btn {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .contact-btn a {
-      flex: 1;
-    }
+    body.high-contrast li { background: #222; }
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 30px;
       background-color: #111;
       color: #fff;
       margin-top: 40px;
@@ -192,21 +188,253 @@
 </head>
 <body>
 
+  <!-- BARRA FIXA DE ACESSIBILIDADE -->
   <div class="acc-bar">
-    <button class="acc-btn" onclick="adjustFont(0.1)">A+ Aumentar</button>
-    <button class="acc-btn" onclick="adjustFont(-0.1)">A- Diminuir</button>
+    <button class="acc-btn" onclick="adjustFont(0.1)">A+ Aumentar Texto</button>
+    <button class="acc-btn" onclick="adjustFont(-0.1)">A- Diminuir Texto</button>
     <button class="acc-btn" onclick="toggleContrast()">🌓 Alto Contraste</button>
-    <button class="acc-btn" onclick="speakText('Modo de leitura ativado. Clique em qualquer texto para ouvir.')">🔊 Ouvir</button>
+    <button class="acc-btn" onclick="speakText('Bem-vindo ao Portal de Apoio à Terceira Idade. Clique nos botões para interagir.')">🔊 Ouvir Ajuda</button>
   </div>
 
   <header>
-    <h1>Apoio Diário do Idoso</h1>
-    <p>Ferramentas simples para facilitar o seu dia</p>
+    <h1>Portal de Apoio à Terceira Idade</h1>
+    <p>Respeito, carinho, saúde e autonomia em um só lugar.</p>
   </header>
 
   <main>
 
+    <!-- IMAGEM ILUSTRATIVA DE APRESENTAÇÃO -->
+    <img src="https://images.unsplash.com/photo-1581579438747-1dc8d1e292c7?auto=format&fit=crop&w=900&q=80" alt="Idosos sorrindo juntos ao ar livre" class="banner-img">
+
+    <!-- SEÇÃO DE INSPIRAÇÃO E APOIO -->
     <section class="card">
-      <h2 onclick="speakText(this.innerText)">🚨 Ligação de Emergência</h2>
-      <p onclick="speakText(this.innerText)">Aperte o botão abaixo se precisar de ajuda médica imediata:</p>
+      <h2 onclick="speakText(this.innerText)">💙 Apoio e Valorização da Terceira Idade</h2>
+      <p onclick="speakText(this.innerText)">A terceira idade é uma fase cheia de sabedoria e novas oportunidades. Nosso objetivo é oferecer ferramentas simples para facilitar seu dia a dia e manter você conectado com quem ama.</p>
+      
+      <img src="https://images.unsplash.com/photo-1516307365426-bea591f05011?auto=format&fit=crop&w=800&q=80" alt="Mãos dadas demonstrando carinho" class="card-img">
+
+      <button class="btn btn-accent" onclick="generateMotivation(); vibratePhone();">✨ Clique aqui para ler uma mensagem especial do dia</button>
+      <p id="motivation-text" style="font-weight: bold; text-align: center; color: var(--primary); margin-top: 15px;"></p>
+    </section>
+
+    <!-- 1. EMERGÊNCIA -->
+    <section class="card">
+      <h2 onclick="speakText(this.innerText)">🚨 Socorro e Emergência</h2>
+      <p onclick="speakText(this.innerText)">Precisa de atendimento médico rápido? Clique abaixo:</p>
       <a href="tel:192" class="btn btn-danger" onclick="vibratePhone()">LIGAR PARA O SAMU (192)</a>
+    </section>
+
+    <!-- 2. CONTATOS DA FAMÍLIA -->
+    <section class="card">
+      <h2 onclick="speakText(this.innerText)">📞 Meus Contatos do WhatsApp</h2>
+      <p onclick="speakText(this.innerText)">Guarde aqui os números dos seus filhos ou amigos para mandar mensagem com um clique:</p>
+      
+      <form id="contact-form">
+        <label for="contact-name">Nome do Familiar ou Amigo:</label>
+        <input type="text" id="contact-name" placeholder="Ex: Filha Maria" required>
+
+        <label for="contact-phone">Número de Telefone (com DDD):</label>
+        <input type="tel" id="contact-phone" placeholder="Ex: 11999998888" required>
+
+        <button type="submit" class="btn btn-success" onclick="vibratePhone()">Salvar Contato</button>
+      </form>
+
+      <ul id="contact-list"></ul>
+    </section>
+
+    <!-- 3. MEDICAMENTOS COM ALERTA SONORO -->
+    <section class="card">
+      <h2 onclick="speakText(this.innerText)">💊 Organizador de Remédios</h2>
+      
+      <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80" alt="Caixas e comprimidos de remédio" class="card-img">
+
+      <form id="med-form">
+        <label for="med-name">Nome do Remédio:</label>
+        <input type="text" id="med-name" placeholder="Ex: Remédio da Pressão" required>
+
+        <label for="med-time">Horário de Tomar:</label>
+        <input type="time" id="med-time" required>
+
+        <button type="submit" class="btn" onclick="vibratePhone()">Cadastrar Remédio</button>
+      </form>
+
+      <ul id="med-list"></ul>
+    </section>
+
+    <!-- 4. SOLICITAR COMPANHIA OU AJUDA -->
+    <section class="card">
+      <h2 onclick="speakText(this.innerText)">🤝 Pedir Acompanhante ou Voluntário</h2>
+      <p onclick="speakText(this.innerText)">Precisa de alguém para ir à farmácia, ao mercado ou apenas para conversar?</p>
+      
+      <form id="help-form">
+        <label for="user-name">Seu Nome:</label>
+        <input type="text" id="user-name" placeholder="Digite seu nome completo" required>
+
+        <label for="help-type">O que você precisa?</label>
+        <select id="help-type">
+          <option value="Mercado">Ajuda com Compras no Mercado</option>
+          <option value="Farmácia">Buscar Remédios na Farmácia</option>
+          <option value="Conversa">Companhia para Conversar ou Caminhar</option>
+          <option value="Celular">Ajuda para Usar o Celular</option>
+        </select>
+
+        <button type="submit" class="btn btn-success" onclick="vibratePhone()">Enviar Pedido</button>
+      </form>
+      <p id="help-response" style="font-weight: bold; color: var(--success); text-align: center; margin-top: 15px;"></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Portal Amigo da Terceira Idade &copy; 2026 - Desenvolvido para facilitar vidas.</p>
+  </footer>
+
+  <script>
+    // --- ACESSIBILIDADE ---
+    let fontScale = 1;
+
+    function adjustFont(val) {
+      fontScale += val;
+      if (fontScale < 0.8) fontScale = 0.8;
+      if (fontScale > 1.5) fontScale = 1.5;
+      document.documentElement.style.setProperty('--font-scale', fontScale);
+    }
+
+    function toggleContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const msg = new SpeechSynthesisUtterance(text);
+        msg.lang = 'pt-BR';
+        msg.rate = 0.9;
+        window.speechSynthesis.speak(msg);
+      }
+    }
+
+    function vibratePhone() {
+      if ("vibrate" in navigator) {
+        navigator.vibrate(50);
+      }
+    }
+
+    // --- MENSAGENS MOTIVACIONAIS ---
+    const messages = [
+      "Nunca é tarde para aprender algo novo e realizar um sonho!",
+      "Sua experiência de vida é um tesouro para todos ao seu redor.",
+      "Cuide do seu corpo hoje: beba um copo de água e dê um sorriso!",
+      "A vida é feita de pequenos momentos felizes. Aproveite o dia de hoje!"
+    ];
+
+    function generateMotivation() {
+      const randomText = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById('motivation-text').innerText = randomText;
+      speakText(randomText);
+    }
+
+    // --- CONTATOS WHATSAPP ---
+    const contactForm = document.getElementById('contact-form');
+    const contactList = document.getElementById('contact-list');
+    let contacts = JSON.parse(localStorage.getItem('elder_contacts')) || [];
+
+    function renderContacts() {
+      contactList.innerHTML = '';
+      contacts.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div>
+            <strong>${item.name}</strong><br>${item.phone}
+          </div>
+          <div>
+            <a href="https://wa.me/55${item.phone}" target="_blank" class="btn btn-success" style="padding:10px 14px; margin:0;">WhatsApp</a>
+            <button class="btn btn-danger" style="padding:10px 14px; margin:0; width:auto;" onclick="deleteContact(${index})">X</button>
+          </div>
+        `;
+        contactList.appendChild(li);
+      });
+    }
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const phone = document.getElementById('contact-phone').value.replace(/\D/g, '');
+
+      contacts.push({ name, phone });
+      localStorage.setItem('elder_contacts', JSON.stringify(contacts));
+      renderContacts();
+      contactForm.reset();
+    });
+
+    function deleteContact(index) {
+      contacts.splice(index, 1);
+      localStorage.setItem('elder_contacts', JSON.stringify(contacts));
+      renderContacts();
+    }
+
+    // --- REMÉDIOS E ALARME ---
+    const medForm = document.getElementById('med-form');
+    const medList = document.getElementById('med-list');
+    let medications = JSON.parse(localStorage.getItem('elder_meds')) || [];
+
+    function renderMeds() {
+      medList.innerHTML = '';
+      medications.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>💊 <strong>${item.name}</strong> - às <strong>${item.time}</strong></span>
+          <button class="btn btn-danger" style="padding:10px 14px; margin:0; width:auto;" onclick="deleteMed(${index})">Apagar</button>
+        `;
+        medList.appendChild(li);
+      });
+    }
+
+    medForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('med-name').value;
+      const time = document.getElementById('med-time').value;
+
+      medications.push({ name, time });
+      localStorage.setItem('elder_meds', JSON.stringify(medications));
+      renderMeds();
+      medForm.reset();
+    });
+
+    function deleteMed(index) {
+      medications.splice(index, 1);
+      localStorage.setItem('elder_meds', JSON.stringify(medications));
+      renderMeds();
+    }
+
+    setInterval(() => {
+      const now = new Date();
+      const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+      
+      medications.forEach(med => {
+        if (med.time === currentTime && now.getSeconds() === 0) {
+          speakText(`Atenção! Está na hora de tomar o seu remédio: ${med.name}`);
+          alert(`⏰ HORA DO REMÉDIO: ${med.name}`);
+        }
+      });
+    }, 1000);
+
+    // --- PEDIDO DE AJUDA ---
+    const helpForm = document.getElementById('help-form');
+    helpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('user-name').value;
+      const type = document.getElementById('help-type').value;
+      const text = `Obrigado ${name}! Seu pedido de apoio para (${type}) foi registrado. Em breve um voluntário responderá.`;
+      
+      document.getElementById('help-response').innerText = text;
+      speakText(text);
+      helpForm.reset();
+    });
+
+    // Carregar dados iniciais
+    renderContacts();
+    renderMeds();
+  </script>
+</body>
+</html>
