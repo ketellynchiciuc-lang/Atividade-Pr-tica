@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apoio Idoso - Portal de Ajuda e Conectividade</title>
+  <style>
+    /* RESET E VARIÁVEIS DE ACESSIBILIDADE */
+    :root {
+      --bg-color: #f4f6f9;
+      --text-color: #222222;
+      --primary-color: #0056b3;
+      --accent-color: #28a745;
+      --danger-color: #dc3545;
+      --card-bg: #ffffff;
+      --font-scale: 1;
+    }
+
+    /* TEMA DE ALTO CONTRASTE */
+    body.high-contrast {
+      --bg-color: #000000;
+      --text-color: #ffff00;
+      --primary-color: #00ffff;
+      --accent-color: #00ff00;
+      --danger-color: #ff0000;
+      --card-bg: #111111;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      font-size: calc(18px * var(--font-scale));
+      line-height: 1.6;
+    }
+
+    /* BARRA DE ACESSIBILIDADE FIXA */
+    .accessibility-bar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .accessibility-bar button {
+      background-color: #555;
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 8px 15px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .accessibility-bar button:hover {
+      background-color: #777;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: calc(2.2rem * var(--font-scale));
+    }
+
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 3px solid var(--primary-color);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 8px;
+    }
+
+    body.high-contrast .card h2 {
+      color: var(--text-color);
+    }
+
+    /* BOTÕES DE AÇÃO */
+    .btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: calc(1rem * var(--font-scale));
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px 0;
+    }
+
+    .btn-emergency {
+      background-color: var(--danger-color);
+      font-size: calc(1.3rem * var(--font-scale));
+      width: 100%;
+      padding: 18px;
+    }
+
+    /* FORMULÁRIOS E INPUTS */
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 15px 0;
+      font-size: calc(1rem * var(--font-scale));
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    /* LISTA DE LEMBRETES */
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: rgba(0,0,0,0.05);
+      margin: 8px 0;
+      padding: 12px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .delete-btn {
+      background-color: var(--danger-color);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #222;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="accessibility-bar">
+    <button onclick="changeFontSize(0.1)">A+ Aumentar Texto</button>
+    <button onclick="changeFontSize(-0.1)">A- Diminuir Texto</button>
+    <button onclick="toggleContrast()">Alto Contraste</button>
+    <button onclick="readPage()">🔊 Ler Página</button>
+  </div>
+
+  <header>
+    <h1>Portal de Apoio ao Idoso</h1>
+    <p>Sua plataforma simples de saúde, emergência e organização diária.</p>
+  </header>
+
+  <main>
+
+    <section class="card">
+      <h2>🚨 Emergência Rápida</h2>
+      <p>Precisa de ajuda imediata? Clique no botão abaixo para ligar para o SAMU.</p>
+      <a href="tel:192" style="text-decoration: none;">
+        <button class="btn btn-emergency">LIGAR PARA O SAMU (192)</button>
+      </a>
+    </section>
+
+    <section class="card">
+      <h2>💊 Lembrete de Medicamentos</h2>
+      <form id="med-form">
+        <label for="med-name">Nome do Remédio:</label>
+        <input type="text" id="med-name" placeholder="Ex: Remédio de Pressão" required>
+        
+        <label for="med-time">Horário:</label>
+        <input type="time" id="med-time" required>
+        
+        <button type="submit" class="btn">Adicionar Remédio</button>
+      </form>
+
+      <h3>Meus Remédios Remetidos:</h3>
+      <ul id="med-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>🧘 Dica de Saúde do Dia</h2>
+      <p id="exercise-text">Clique no botão abaixo para ver uma sugestão de exercício leve para fazer em casa.</p>
+      <button class="btn" onclick="getExercise()">Ver Exercício</button>
+    </section>
+
+    <section class="card">
+      <h2>🤝 Solicitar Ajuda / Voluntário</h2>
